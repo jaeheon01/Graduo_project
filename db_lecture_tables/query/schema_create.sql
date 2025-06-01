@@ -5,23 +5,45 @@ Drop schema GRADUO;
 -- 2. 새로운 스키마 생성
 CREATE SCHEMA GRADUO;
 
--- 3. graduation_requirement 테이블
-CREATE TABLE GRADUO.graduation_requirement (
-    id INT NOT NULL PRIMARY KEY,
-    department VARCHAR(50) NULL,
-    start_year INT NULL,
-    end_year INT NULL,
-    total_credit INT NULL CHECK (total_credit > 0),
-    major_credit INT NULL CHECK (major_credit > 0),
-    basic_credit INT NULL CHECK (basic_credit > 0),
-    distribution_area_credit INT NULL CHECK (distribution_area_credit > 0),
-    industrial_course_count INT NULL CHECK (industrial_course_count > 0),
-    is_dual_degree BOOLEAN DEFAULT FALSE,
-    CHECK (
-        (is_dual_degree = TRUE AND industrial_course_count = 1) OR
-        (is_dual_degree = FALSE AND industrial_course_count = 2)
-    )
+-- -- 3. graduation_requirement 테이블
+-- CREATE TABLE GRADUO.graduation_requirement (
+--     id INT NOT NULL PRIMARY KEY,
+--     department VARCHAR(50) NULL,
+--     start_year INT NULL,
+--     end_year INT NULL,
+--     total_credit INT NULL CHECK (total_credit > 0),
+--     major_credit INT NULL CHECK (major_credit > 0),
+--     basic_credit INT NULL CHECK (basic_credit > 0),
+--     distribution_area_credit INT NULL CHECK (distribution_area_credit > 0),
+--     industrial_course_count INT NULL CHECK (industrial_course_count > 0),
+--     is_dual_degree BOOLEAN DEFAULT FALSE,
+--     CHECK (
+--         (is_dual_degree = TRUE AND industrial_course_count = 1) OR
+--         (is_dual_degree = FALSE AND industrial_course_count = 2)
+--     )
+-- );
+
+DROP TABLE IF EXISTS GRADUO.graduation_requirement_base;
+CREATE TABLE GRADUO.graduation_requirement_base (
+    id INT NOT NULL PRIMARY KEY,  -- AUTO_INCREMENT 제거
+    department VARCHAR(50) NOT NULL,
+    start_year INT NOT NULL,
+    end_year INT NOT NULL,
+    total_credit INT NOT NULL CHECK(total_credit > 0),
+    basic_credit INT NOT NULL CHECK(basic_credit > 0),
+    distribution_area_credit INT NOT NULL CHECK(distribution_area_credit > 0)
 );
+
+DROP TABLE IF EXISTS GRADUO.graduation_requirement_detail;
+CREATE TABLE GRADUO.graduation_requirement_detail (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    base_id INT NOT NULL,
+    is_dual_degree BOOLEAN NOT NULL,
+    major_credit INT NOT NULL CHECK(major_credit > 0),
+    industrial_course_count INT NOT NULL CHECK(industrial_course_count > 0),
+    FOREIGN KEY (base_id) REFERENCES GRADUO.graduation_requirement_base(id)
+);
+
 
 -- 4. graduation_comparative_score 테이블
 CREATE TABLE GRADUO.graduation_comparative_score (
@@ -32,7 +54,7 @@ CREATE TABLE GRADUO.graduation_comparative_score (
     opic INT NULL CHECK (opic > 0),
     topcit INT NULL CHECK (topcit > 0),
     apc INT NULL CHECK (apc > 0),
-    FOREIGN KEY (id) REFERENCES GRADUO.graduation_requirement(id)
+    FOREIGN KEY (id) REFERENCES GRADUO.graduation_requirement_base(id)
 );
 
 -- 5. user 테이블
