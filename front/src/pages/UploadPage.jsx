@@ -1,6 +1,7 @@
 // src/pages/UploadPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const UploadPage = () => {
 	const [file, setFile] = useState(null);
@@ -25,10 +26,20 @@ const UploadPage = () => {
 		formData.append('userId', currentUserID);
 
 		// 파일 업로드 및 백엔드 전송
-		await fetch('http://localhost:8080/api/upload', {
-			method: 'POST',
-			body: formData,
+		const response = await axios.post('http://172.21.77.43:8080/api/transcript/upload', formData, {
+			headers: {
+				"Content-Type": "multipart/form-data"
+			}
 		});
+
+		console.log('응답 상태:', response.status);
+
+		if (response.status === 200) {
+			console.log('✅ 파일 업로드 성공');
+		} else {
+			console.error('❌ 업로드 실패:', response.status);
+		}
+
 
 		navigate('/result');
 	};
