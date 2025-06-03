@@ -141,3 +141,6 @@ CREATE TABLE GRADUO.raw_lecture_import_2023 (
     split_class_method     VARCHAR(50),
     split_class_type       VARCHAR(50)
 ) CHARACTER SET utf8mb4;
+
+ALTER TABLE graduo.external_score MODIFY external_score_id INT NOT NULL AUTO_INCREMENT;
+
