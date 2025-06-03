@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/transcript")
 @RequiredArgsConstructor
@@ -21,6 +21,7 @@ public class TranscriptController {
     @PostMapping("/upload")
     public ResponseEntity<?> uploadTranscript(@RequestParam("file") MultipartFile file,
                                               @RequestParam("userId") Long userId) {
+        System.out.println("pdf 업로드 요청 받음");
         List<TranscriptCourse> courses = pdfParser.parse(file, userId);
         transcriptRepository.saveAll(courses);
         return ResponseEntity.ok("Saved " + courses.size() + " courses.");

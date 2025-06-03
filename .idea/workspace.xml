@@ -5,14 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db5157e3-7422-4159-805e-f8614c06e30a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/GraduationCheckApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/GraduationCheckApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/back/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/back/mvnw.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/controller/TranscriptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/controller/TranscriptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/model/TranscriptCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/model/TranscriptCourse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/parser/PdfParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/parser/PdfParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/repository/TranscriptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/repository/TranscriptRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/service/TranscriptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/example/graduationcheck/service/TranscriptService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/GraduationCheckApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/GraduationCheckApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/controller/TranscriptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/controller/TranscriptController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/model/TranscriptCourse.class" beforeDir="false" afterPath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/model/TranscriptCourse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/parser/PdfParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/parser/PdfParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/service/TranscriptService.class" beforeDir="false" afterPath="$PROJECT_DIR$/back/target/classes/com/example/graduationcheck/service/TranscriptService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,20 +35,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jaeheon/Desktop/Workspace/graduationcheck/Graduo_project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.GraduationCheckApplication.executor": "Run",
+    "git-widget-placeholder": "jaeheon",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/jaeheon/Desktop/Workspace/graduationcheck/Graduo_project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="GraduationCheckApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="graduationcheck" />
@@ -70,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1748919803655</updated>
       <workItem from="1748919804672" duration="301000" />
-      <workItem from="1748920285394" duration="4321000" />
+      <workItem from="1748920285394" duration="11716000" />
     </task>
     <servers />
   </component>
