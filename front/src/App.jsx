@@ -19,4 +19,8 @@ function App() {
 	);
 }
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> ljh8450
