@@ -1,4 +1,4 @@
-INSERT INTO GRADUO.change_named_lecture (prev_lecture_name, current_)
+INSERT INTO GRADUO.change_named_lecture (prev_lecture_name, current_lecture_name)
 VALUES
     ('시스템소프트웨어보안및실습', '시스템소프트웨어보안'),
     ('네트워크소프트웨어설계',       '네트워크소프트웨어'),
