@@ -1,0 +1,11 @@
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/GraduationCheckApplication.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/controller/TranscriptController.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/model/GraduationRequirement.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/model/TranscriptCourse.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/model/User.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/parser/PdfParser.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/repository/GraduationRequirementRepository.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/repository/TranscriptRepository.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/repository/UserRepository.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/service/GraduationCheckService.java
+/Users/jaeheon/Desktop/Workspace/graduationcheck/src/main/java/com/example/graduationcheck/service/TranscriptService.java
