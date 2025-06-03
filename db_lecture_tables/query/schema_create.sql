@@ -5,23 +5,36 @@ Drop schema GRADUO;
 -- 2. 새로운 스키마 생성
 CREATE SCHEMA GRADUO;
 
--- 3. graduation_requirement 테이블
-CREATE TABLE GRADUO.graduation_requirement (
-    id INT NOT NULL PRIMARY KEY,
-    department VARCHAR(50) NULL,
-    start_year INT NULL,
-    end_year INT NULL,
-    total_credit INT NULL CHECK (total_credit > 0),
-    major_credit INT NULL CHECK (major_credit > 0),
-    basic_credit INT NULL CHECK (basic_credit > 0),
-    distribution_area_credit INT NULL CHECK (distribution_area_credit > 0),
-    industrial_course_count INT NULL CHECK (industrial_course_count > 0),
-    is_dual_degree BOOLEAN DEFAULT FALSE,
-    CHECK (
-        (is_dual_degree = TRUE AND industrial_course_count = 1) OR
-        (is_dual_degree = FALSE AND industrial_course_count = 2)
-    )
+CREATE TABLE GRADUO.graduation_requirement_base (
+    id INT NOT NULL PRIMARY KEY,  -- AUTO_INCREMENT 제거
+    department VARCHAR(50) NOT NULL,
+    start_year INT NOT NULL,
+    end_year INT NOT NULL,
+    total_credit INT NOT NULL CHECK(total_credit > 0),
+    distribution_area_credit INT NOT NULL CHECK(distribution_area_credit > 0)
 );
+
+CREATE TABLE GRADUO.graduation_requirement_detail (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    base_id INT NOT NULL,
+    is_dual_degree BOOLEAN NOT NULL,
+    major_credit INT NOT NULL CHECK(major_credit > 0),
+    industrial_course_count INT NOT NULL CHECK(industrial_course_count > 0),
+    FOREIGN KEY (base_id) REFERENCES GRADUO.graduation_requirement_base(id)
+);
+
+-- “기초과목명”을 저장할 테이블 생성
+CREATE TABLE GRADUO.graduation_req_basic_courses (
+    id          INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    base_id     INT NOT NULL,                  -- graduation_requirement_base(id) 참조
+    course_name VARCHAR(100) NOT NULL,         -- 전공기초 과목명
+
+    CONSTRAINT fk_basic_courses_base
+      FOREIGN KEY (base_id)
+      REFERENCES GRADUO.graduation_requirement_base(id)
+      ON DELETE CASCADE
+);
+
 
 -- 4. graduation_comparative_score 테이블
 CREATE TABLE GRADUO.graduation_comparative_score (
@@ -32,7 +45,7 @@ CREATE TABLE GRADUO.graduation_comparative_score (
     opic INT NULL CHECK (opic > 0),
     topcit INT NULL CHECK (topcit > 0),
     apc INT NULL CHECK (apc > 0),
-    FOREIGN KEY (id) REFERENCES GRADUO.graduation_requirement(id)
+    FOREIGN KEY (id) REFERENCES GRADUO.graduation_requirement_base(id)
 );
 
 -- 5. user 테이블
@@ -51,13 +64,13 @@ CREATE TABLE GRADUO.lecture (
     name VARCHAR(100) NULL,
     credit INT NULL CHECK (credit > 0),
     code VARCHAR(20) NULL,
-    semester VARCHAR(10) NULL,
+    year VARCHAR(10) NULL,
     lecture_department VARCHAR(50) NULL
 );
 
 create TABLE Graduo.change_named_lecture (
     prev_lecture_name VARCHAR(100) NOT NULL primary key,
-    current_ VARCHAR(100) NOT NULL
+    current_lecture_name VARCHAR(100) NOT NULL
 );
 
 -- 7. taken_lecture 테이블
@@ -66,7 +79,6 @@ CREATE TABLE GRADUO.taken_lecture (
     user_id INT NOT NULL,
     lecture_id VARCHAR(10) NOT NULL,  -- ✅ 수정됨
     taken_year INT NULL,
-    taken_semester VARCHAR(10) NULL,
     score ENUM('A+', 'A0', 'B+', 'B0', 'C+', 'C0', 'P', 'F') NULL,
     FOREIGN KEY (user_id) REFERENCES GRADUO.user(user_id),
     FOREIGN KEY (lecture_id) REFERENCES GRADUO.lecture(lecture_id)
@@ -78,8 +90,6 @@ CREATE TABLE GRADUO.required_general (
     lecture_id VARCHAR(10) NOT NULL PRIMARY KEY,
     is_field_required BOOLEAN DEFAULT FALSE,
     subject_field ENUM('역사와 철학', '문학과 예술', '인간과 사회', '자연과 과학', '연결과 통합', 'Others') NULL,
-    start_student_num INT NULL CHECK (start_student_num > 0),
-    end_student_num INT NULL CHECK (end_student_num > 0),
     FOREIGN KEY (lecture_id) REFERENCES GRADUO.lecture(lecture_id)
 );
 
@@ -87,8 +97,6 @@ CREATE TABLE GRADUO.required_general (
 CREATE TABLE GRADUO.major (
     lecture_id VARCHAR(10) NOT NULL PRIMARY KEY,
     is_required BOOLEAN DEFAULT FALSE,
-    start_year INT NULL,
-    end_year INT NULL,
     is_industry BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (lecture_id) REFERENCES GRADUO.lecture(lecture_id)
 );
