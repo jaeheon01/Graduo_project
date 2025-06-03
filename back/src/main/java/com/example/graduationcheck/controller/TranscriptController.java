@@ -1,3 +1,4 @@
+// controller/TranscriptController.java
 package com.example.graduationcheck.controller;
 
 import com.example.graduationcheck.model.TranscriptCourse;
@@ -14,15 +15,15 @@ import java.util.List;
 @RequestMapping("/api/transcript")
 @RequiredArgsConstructor
 public class TranscriptController {
-
     private final PdfParser pdfParser;
     private final TranscriptRepository transcriptRepository;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadTranscript(@RequestParam("file") MultipartFile file) {
-        List<TranscriptCourse> courses = pdfParser.parse(file);
+    public ResponseEntity<?> uploadTranscript(@RequestParam("file") MultipartFile file,
+                                              @RequestParam("userId") Long userId) {
+        List<TranscriptCourse> courses = pdfParser.parse(file, userId);
         transcriptRepository.saveAll(courses);
-        return ResponseEntity.ok("Parsed and saved " + courses.size() + " courses.");
+        return ResponseEntity.ok("Saved " + courses.size() + " courses.");
     }
 
     @GetMapping("/{userId}")

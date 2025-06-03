@@ -18,8 +18,8 @@ public class TranscriptService {
     @Autowired
     private TranscriptRepository transcriptRepository;
 
-    public String parseAndSaveTranscript(MultipartFile file) {
-        List<TranscriptCourse> courses = pdfParser.parse(file);
+    public String parseAndSaveTranscript(MultipartFile file, Long userID) {
+        List<TranscriptCourse> courses = pdfParser.parse(file, userID);
         transcriptRepository.saveAll(courses);
         return "성적표 파싱 및 저장 완료";
     }
