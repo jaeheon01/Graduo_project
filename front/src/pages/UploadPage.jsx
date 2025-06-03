@@ -25,7 +25,7 @@ const UploadPage = () => {
 		formData.append('userId', currentUserID);
 
 		// 파일 업로드 및 백엔드 전송
-		await fetch('http://localhost:8080/api/upload-pdf', {
+		await fetch('http://localhost:8080/api/upload', {
 			method: 'POST',
 			body: formData,
 		});
@@ -34,10 +34,12 @@ const UploadPage = () => {
 	};
 
 	return (
-		<div>
-			<h2>성적표 업로드</h2>
-			<input type="file" accept=".pdf" onChange={handleFileChange} />
-			<button onClick={handleSubmit}>제출</button>
+		<div className="page-container">
+			<div className="form-box">
+				<h1>성적표 업로드</h1>
+				<input type="file" accept=".pdf" onChange={handleFileChange} />
+				<button onClick={handleSubmit}>제출</button>
+			</div>
 		</div>
 	);
 };
