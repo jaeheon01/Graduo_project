@@ -13,8 +13,16 @@ const UploadPage = () => {
 	const handleSubmit = async () => {
 		if (!file) return;
 
+		const currentUserID = localStorage.getItem('userId');
+
+		if (!currentUserID) {
+			alert('로그인이 필요합니다.');
+			return;
+		}
+
 		const formData = new FormData();
 		formData.append('file', file);
+		formData.append('userId', currentUserID);
 
 		// 파일 업로드 및 백엔드 전송
 		await fetch('http://localhost:8080/api/upload-pdf', {
