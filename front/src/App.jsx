@@ -5,6 +5,7 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import UploadPage from './pages/UploadPage';
 import ResultPage from './pages/ResultPage';
+import './App.css';
 
 function App() {
 	return (
@@ -19,8 +20,4 @@ function App() {
 	);
 }
 
-<<<<<<< HEAD
 export default App;
-=======
-export default App;
->>>>>>> ljh8450

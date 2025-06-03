@@ -1,0 +1,72 @@
+/* 전체 페이지 배경 및 기본 글꼴 설정 */
+body {
+	background-color: #f8f9fa;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+/* 공통 컨테이너 중앙 정렬 */
+.page-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+/* 로그인/업로드 박스 스타일 */
+.form-box {
+	background-color: white;
+	padding: 40px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 360px;
+	text-align: center;
+}
+
+/* 제목 */
+.form-box h2 {
+	margin-bottom: 20px;
+	color: #1a2c5b;
+}
+
+/* input 박스 */
+.form-box input {
+	width: 100%;
+	padding: 10px 12px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+/* 버튼 스타일 */
+.form-box button {
+	width: 100%;
+	padding: 12px;
+	background-color: #4a6cf7;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 15px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.form-box button:hover {
+	background-color: #3753c4;
+}
+
+/* 결과 테이블 */
+.result-table {
+	margin-top: 20px;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.result-table th,
+.result-table td {
+	border: 1px solid #ccc;
+	padding: 8px;
+	text-align: center;
+}
