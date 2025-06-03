@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ExcelUpload = () => {
+const PDFUpload = () => {
 	const [file, setFile] = useState(null);
 	const [result, setResult] = useState(null);
 
@@ -22,7 +22,7 @@ const ExcelUpload = () => {
 	return (
 		<div>
 			<h2>엑셀 업로드</h2>
-			<input type="file" accept=".xlsx" onChange={handleChange} />
+			<input type="file" accept=".pdf" onChange={handleChange} />
 			<button onClick={handleUpload}>업로드</button>
 
 			{result && (
@@ -35,4 +35,4 @@ const ExcelUpload = () => {
 	);
 };
 
-export default ExcelUpload;
+export default PDFUpload;
