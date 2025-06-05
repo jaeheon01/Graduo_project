@@ -11,10 +11,9 @@ public class TranscriptCourse {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String courseName;
-    private String grade;
-    private int credit;
     private Long userId;
-
-    private Long lectureId;
+    private String courseName;
+    private int credit;
+    private String grade;
+    private String subjectField;
 }

@@ -1,4 +1,3 @@
-// repository/TranscriptRepository.java
 package com.example.graduationcheck.repository;
 
 import com.example.graduationcheck.model.TranscriptCourse;

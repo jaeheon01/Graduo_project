@@ -6,10 +6,10 @@ import lombok.*;
 @Entity
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-public class GraduationReqBasicCourse {
+public class GraduationComparativeScore {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long lectureId;
-    private String major;
+    private String scoreType; // toeic, apc 등
+    private int requiredScore;
 }
