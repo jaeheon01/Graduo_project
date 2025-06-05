@@ -5,15 +5,23 @@ import lombok.*;
 
 @Entity
 @Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class TranscriptCourse {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
     private String courseName;
-    private int credit;
+
     private String grade;
-    private String subjectField;
+
+    private int credit;
+
+    private Long userId;
+
+    private String subjectField;      // 교양 영역 등
+    private String classification;    // 이수 구분 (전공/교양 등)
 }
