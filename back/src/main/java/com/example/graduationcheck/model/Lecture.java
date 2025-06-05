@@ -7,14 +7,11 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder
-public class TranscriptCourse {
+public class Lecture {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String courseName;
-    private String grade;
+    private String name;
     private int credit;
-    private Long userId;
-
-    private Long lectureId;
+    private String category;
 }
