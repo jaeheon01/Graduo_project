@@ -1,32 +1,35 @@
 package com.example.graduationcheck.service;
 
+import com.example.graduationcheck.dto.GraduationResult;
 import com.example.graduationcheck.model.TranscriptCourse;
-import com.example.graduationcheck.repository.TranscriptRepository;
-import com.example.graduationcheck.repository.GraduationRequirementRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.graduationcheck.repository.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class GraduationCheckService {
+    private final TranscriptRepository transcriptRepository;
+    private final GraduationReqBasicCoursesRepository reqBasicRepository;
+    private final RequiredGeneralRepository requiredGeneralRepository;
+    private final ExternalScoreRepository externalScoreRepository;
 
-    @Autowired
-    private TranscriptRepository transcriptRepository;
-
-    @Autowired
-    private GraduationRequirementRepository requirementRepository;
-
-    public Map<String, Object> checkGraduation(Long userId) {
+    public GraduationResult checkGraduation(Long userId) {
         List<TranscriptCourse> courses = transcriptRepository.findByUserId(userId);
         int totalCredits = courses.stream().mapToInt(TranscriptCourse::getCredit).sum();
-        boolean isPossible = totalCredits >= 130; // 예시 요건
+        List<Long> takenLectureIds = courses.stream()
+                .map(TranscriptCourse::getLectureId)
+                .filter(Objects::nonNull)
+                .toList();
 
-        Map<String, Object> result = new HashMap<>();
-        result.put("graduationPossible", isPossible);
-        result.put("totalCredits", totalCredits);
-        return result;
+        boolean creditOk = totalCredits >= 130;
+        boolean majorRequiredOk = takenLectureIds.containsAll(reqBasicRepository.findLectureIdsByMajor("소프트웨어학과"));
+        boolean generalRequiredOk = takenLectureIds.containsAll(requiredGeneralRepository.findAllLectureIds());
+        Integer score = externalScoreRepository.findScoreByUserId(userId);
+        boolean externalOk = (score != null && score >= 800);
+
+        return new GraduationResult(majorRequiredOk, generalRequiredOk, creditOk, externalOk);
     }
 }
