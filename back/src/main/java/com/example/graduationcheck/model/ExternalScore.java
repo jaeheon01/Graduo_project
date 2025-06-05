@@ -11,5 +11,6 @@ public class ExternalScore {
     private Long id;
 
     private Long userId;
+    private String externalScoreType; // 예: toeic, apc
     private int score;
 }

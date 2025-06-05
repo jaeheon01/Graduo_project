@@ -6,9 +6,10 @@ import lombok.*;
 @Entity
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-public class RequiredGeneral {
+public class ChangeNamedLecture {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long lectureId;
+    private String prevLectureName;
+    private String currentLectureName;
 }

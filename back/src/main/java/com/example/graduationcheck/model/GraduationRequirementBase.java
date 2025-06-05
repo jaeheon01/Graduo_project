@@ -6,12 +6,12 @@ import lombok.*;
 @Entity
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-@Builder
-public class Lecture {
+public class GraduationRequirementBase {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String name;
-    private int credit;
-    private String category;
+    private String department;
+    private int startYear;
+    private int endYear;
+    private int totalCredit;
+    private int distributionAreaCredit;
 }
