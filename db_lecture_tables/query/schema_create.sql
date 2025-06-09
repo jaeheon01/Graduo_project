@@ -115,3 +115,8 @@ CREATE TABLE GRADUO.external_score (
 
 ALTER TABLE graduo.external_score MODIFY external_score_id INT NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE graduation_requirement_detail
+  ADD CONSTRAINT uq_base_dual
+    UNIQUE (base_id, is_dual_degree);
+
+
