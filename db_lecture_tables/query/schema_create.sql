@@ -6,7 +6,7 @@ Drop schema GRADUO;
 CREATE SCHEMA GRADUO;
 
 CREATE TABLE GRADUO.graduation_requirement_base (
-    id INT NOT NULL PRIMARY KEY,  -- AUTO_INCREMENT 제거
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  -- AUTO_INCREMENT 추가해야함
     department VARCHAR(50) NOT NULL,
     start_year INT NOT NULL,
     end_year INT NOT NULL,
@@ -37,14 +37,14 @@ CREATE TABLE GRADUO.graduation_req_basic_courses (
 
 
 -- 4. graduation_comparative_score 테이블
-CREATE TABLE GRADUO.graduation_comparative_score (
-    id INT NOT NULL PRIMARY KEY,
-    toeic INT NULL CHECK (toeic > 0),
-    teps INT NULL CHECK (teps > 0),
-    toeic_speaking INT NULL CHECK (toeic_speaking > 0),
-    opic INT NULL CHECK (opic > 0),
-    topcit INT NULL CHECK (topcit > 0),
-    apc INT NULL CHECK (apc > 0),
+CREATE TABLE GRADUO.graduation_comparative_score ( 
+    id INT NOT NULL PRIMARY KEY, -- 약한 연결이라 필요없음
+    toeic INT NULL CHECK (toeic > 0 AND toeic <= 990),
+    teps INT NULL CHECK (teps > 0 AND teps <=600),
+    toeic_speaking INT NULL CHECK (toeic_speaking > 0 AND toeic_speaking <= 200),
+    opic INT NULL CHECK (opic > 0 AND opic <= 250),
+    topcit INT NULL CHECK (topcit > 0 AND topcit <= 1000),
+    apc INT NULL CHECK (apc >= 0),
     FOREIGN KEY (id) REFERENCES GRADUO.graduation_requirement_base(id)
 );
 
@@ -54,7 +54,7 @@ CREATE TABLE GRADUO.user (
     name VARCHAR(50) NULL,
     student_number VARCHAR(20) UNIQUE,
     department VARCHAR(50) NULL,
-    entrance_year INT NULL,
+    entrance_year INT NULL CHECK (entrance_year < 2021),
     is_dual_degree BOOLEAN DEFAULT FALSE
 );
 
@@ -75,9 +75,9 @@ create TABLE Graduo.change_named_lecture (
 
 -- 7. taken_lecture 테이블
 CREATE TABLE GRADUO.taken_lecture (
-    id INT NOT NULL PRIMARY KEY,
-    user_id INT NOT NULL,
-    lecture_id VARCHAR(10) NOT NULL,  -- ✅ 수정됨
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL UNIQUE,
+    lecture_id VARCHAR(10) NOT NULL, 
     taken_year INT NULL,
     score ENUM('A+', 'A0', 'B+', 'B0', 'C+', 'C0', 'P', 'F') NULL,
     FOREIGN KEY (user_id) REFERENCES GRADUO.user(user_id),
@@ -103,7 +103,7 @@ CREATE TABLE GRADUO.major (
 
 -- 10. external_score 테이블
 CREATE TABLE GRADUO.external_score (
-    external_score_id INT NOT NULL PRIMARY KEY,
+    external_score_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     external_score_type ENUM('TOPCIT', 'APC') NULL,
     eng_score_type ENUM('TOEIC', 'OPIC', 'TEPS') NULL,
@@ -112,35 +112,6 @@ CREATE TABLE GRADUO.external_score (
     aquisition_date DATE NULL,
     FOREIGN KEY (user_id) REFERENCES GRADUO.user(user_id)
 );
-CREATE TABLE GRADUO.raw_lecture_import_2023 (
-    num                    INT,
-    college                VARCHAR(100),
-    department             VARCHAR(100),
-    major                  VARCHAR(100),
-    subject_name           VARCHAR(200),
-    class_number           VARCHAR(20),
-    subject_code           VARCHAR(20),
-    professor              VARCHAR(100),
-    professor_department   VARCHAR(100),
-    credit                 INT,
-    hours                  INT,
-    course_category        VARCHAR(50),
-    subject_type           VARCHAR(50),
-    is_english             VARCHAR(10),
-    english_grade          VARCHAR(10),
-    is_foreign_only        VARCHAR(10),
-    is_team_teaching       VARCHAR(10),
-    lecture_time_label     VARCHAR(200),
-    split_type             VARCHAR(50),
-    lecture_class          VARCHAR(50),
-    teaching_method        VARCHAR(50),
-    subject_feature        VARCHAR(100),
-    subject_name_eng       VARCHAR(200),
-    subject_id             INT,
-    target_grade           VARCHAR(20),
-    split_class_method     VARCHAR(50),
-    split_class_type       VARCHAR(50)
-) CHARACTER SET utf8mb4;
 
 ALTER TABLE graduo.external_score MODIFY external_score_id INT NOT NULL AUTO_INCREMENT;
 
